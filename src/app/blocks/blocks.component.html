@@ -1,0 +1,79 @@
+<div class="min-h-screen flex items-center justify-center  text-slate-50">
+    <div class="">
+
+     
+
+
+        <div class="w-full max-w-4xl mx-4  p-8 space-y-6
+           transition-transform duration-300" [ngClass]="{
+      'animate-success-bounce border-4 border-orange-500': result === 'success',
+      'animate-error-shake ring-4 ring-red-600': result === 'error',
+         'animate-error-shake ring-4 ring-gray-600': result === null
+    }">
+            <header class="space-y-2">
+                   <img src="https://loggro.com/img/newSite/logo.svg" alt="Ilustración de bloques de letras"
+            class="max-w-sm mx-auto" />
+                <h1 class="text-3xl text-[#E75E1E] font-bold tracking-tight">
+                    Prueba de Bloques ABC
+                </h1>
+                <p class="text-sm text-gray-600 text-gray-700">
+                    Escribe una palabra y mira si se puede construir con la colección de
+                    bloques.
+                </p>
+            </header>
+
+            <!-- Bloques de letras -->
+            <section>
+                <h2 class="text-sm font-semibold text-gray-600 mb-2">
+                    Bloques disponibles
+                </h2>
+                <div class="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 gap-3 text-center">
+                    <div class="relative border-[#606060] border-2 px-3 py-2 flex flex-col items-center shadow-md"
+                        *ngFor="let block of blocksService.blocks; index as i">
+                        <span class="absolute top-1 left-2 text-[10px] text-gray-600">
+                            #{{ i + 1 }}
+                        </span>
+                        <div class="flex gap-2 mt-3">
+                            <span
+                                class="inline-flex items-center justify-center w-7 h-7 rounded-lg bg-[#E75E1E]  text-white font-bold shadow">{{
+                                block[0] }}</span>
+                            <span
+                                class="inline-flex items-center justify-center w-7 h-7 rounded-lg bg-[#606060] text-white font-bold shadow">{{
+                                block[1] }}</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- formlario -->
+            <section class="space-y-3">
+                <div class="flex flex-col sm:flex-row gap-3">
+                    <input [(ngModel)]="word" type="text"
+                      [attr.maxlength]="blocksService.blocks.length"
+                     placeholder="Escribe una palabra..." class="flex-1 rounded-full bg-[#606060] px-4 py-2 text-sm text-white
+             placeholder:text-gray-200/70 outline-none
+             border border-[#606060]
+             focus:border-[#E75E1E] focus:ring-2 focus:ring-[#E75E1E]/60
+             transition-all" />
+
+                    <button (click)="checkWord()" class="rounded-full px-5 py-2 text-sm font-semibold
+             bg-[#E75E1E] to-[#606060] text-white
+             shadow-lg shadow-[#E75E1E]/40 hover:shadow-[#E75E1E]/60
+             hover:translate-y-[-1px] active:translate-y-0
+             transition-all">
+                        Probar palabra
+                    </button>
+                </div>
+
+                <p *ngIf="message" class="text-sm font-bold" data-testid="result-message" [ngClass]="{
+          'text-[#E75E1E]': result === 'success',
+          'text-red-600': result === 'error',
+          'text-gray-600': !result
+        }">
+                    {{ message }}
+                </p>
+            </section>
+        </div>
+    </div>
+
+</div>
