@@ -1,5 +1,5 @@
 ````md
-# Prueba Loggro – Juego de Bloques de Palabras 🧊🔤
+# Prueba Loggro – Juego de Bloques de Palabras 
 
 Pequeño juego construido en **Angular** donde el usuario escribe una palabra y el sistema valida si se puede formar usando una colección de bloques (cada bloque tiene 2 letras).  
 
